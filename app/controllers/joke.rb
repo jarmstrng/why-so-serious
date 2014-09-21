@@ -31,10 +31,10 @@ post '/joke/new' do
                             text_three: params[:text_three],
                             )
 
-  joke.images.find_or_create_by(path: params[:image1])
-  joke.images.find_or_create_by(path: params[:image2])
-  joke.images.find_or_create_by(path: params[:image3])
-  
+  joke.images.create(path: params[:image1])
+  joke.images.create(path: params[:image2])
+  joke.images.create(path: params[:image3])
+
   redirect :"joke/show/#{joke.id}"
 end
 
@@ -58,11 +58,11 @@ put '/joke/:id/edit' do
   joke.images.find_or_create_by(path: params[:image1])
   joke.images.find_or_create_by(path: params[:image2])
   joke.images.find_or_create_by(path: params[:image3])
-  
+
   redirect :"joke/show/#{joke.id}"
 end
 
 delete "/joke/:id" do
   Joke.find(params[:id]).destroy
-  redirect "/"  
+  redirect "/"
 end
