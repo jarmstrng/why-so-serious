@@ -59,10 +59,12 @@ put '/joke/:id/edit' do
   joke.images.find_or_create_by(path: params[:image2])
   joke.images.find_or_create_by(path: params[:image3])
   
-  redirect :"joke/show/#{joke.id}"
+  redirect :"jokes/my_jokes"
 end
 
-delete "/joke/:id" do
+delete "/joke" do
+  p "@" * 50
+  p params
   Joke.find(params[:id]).destroy
-  redirect "/"  
+  # redirect "/"  
 end
